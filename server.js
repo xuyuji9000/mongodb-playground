@@ -14,6 +14,13 @@ MongoClient.connect(config.connect, (err,database) => {
 
     // routes
     app.get('/', function(req, res){
+        var cursor = db.collection('quote').find().toArray(function(err, results) {
+            console.log(results);
+            res.send(results);
+        });
+    });
+
+    app.get('/input', function(req, res){
         res.sendFile(__dirname + '/index.html');
     });
     
